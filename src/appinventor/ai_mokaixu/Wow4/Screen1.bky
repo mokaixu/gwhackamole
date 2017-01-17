@@ -1,0 +1,66 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="component_event" id="1" x="-887" y="-163">
+    <mutation component_type="Button" instance_name="PlayButton" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">PlayButton</field>
+    <statement name="DO">
+      <block type="controls_openAnotherScreen" id="2" inline="false">
+        <value name="SCREEN">
+          <block type="text" id="3">
+            <field name="TEXT">Screen15</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="4" x="-865" y="-55">
+    <mutation component_type="Button" instance_name="Help1" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">Help1</field>
+    <statement name="DO">
+      <block type="component_method" id="5" inline="false">
+        <mutation component_type="Notifier" method_name="ShowMessageDialog" is_generic="false" instance_name="Help"></mutation>
+        <field name="COMPONENT_SELECTOR">Help</field>
+        <value name="ARG0">
+          <block type="text" id="6">
+            <field name="TEXT">You need guac but your avocadoes are on the loose! Your mission is to whack as many avocadoes as you can without missing more than 3 times! Good luck :)</field>
+          </block>
+        </value>
+        <value name="ARG1">
+          <block type="text" id="7">
+            <field name="TEXT">I need help!</field>
+          </block>
+        </value>
+        <value name="ARG2">
+          <block type="text" id="8">
+            <field name="TEXT">I'm ready.</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="59" x="-580" y="-19">
+    <mutation component_type="Button" instance_name="Button1" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">Button1</field>
+    <statement name="DO">
+      <block type="component_method" id="159" inline="false">
+        <mutation component_type="Notifier" method_name="ShowMessageDialog" is_generic="false" instance_name="Credits"></mutation>
+        <field name="COMPONENT_SELECTOR">Credits</field>
+        <value name="ARG0">
+          <block type="text" id="126">
+            <field name="TEXT">Avocado/Guacamole graphics created by Jessica He "Sad Trombone Sounds" by Joe Lamb from Soundbible.org is licensed under CC BY 3.0 "Punch or Whack" by Vladimir from Soundbible.org is licensed under Public Domain "Level Up 01" by Andy Rhode from freesound.org  is licensed under Public Domain "Kitchen Background" by Joseph Crown from crownjoseph.com is licensed under CC BY 3.0</field>
+          </block>
+        </value>
+        <value name="ARG1">
+          <block type="text" id="141">
+            <field name="TEXT">Credits</field>
+          </block>
+        </value>
+        <value name="ARG2">
+          <block type="text" id="160">
+            <field name="TEXT">Ok</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <yacodeblocks ya-version="158" language-version="20"></yacodeblocks>
+</xml>

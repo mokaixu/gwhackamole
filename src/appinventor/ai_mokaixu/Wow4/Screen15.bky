@@ -1,0 +1,1516 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="global_declaration" id="1" inline="false" x="-1103" y="-33">
+    <field name="NAME">DB_SCORE_TAG</field>
+    <value name="VALUE">
+      <block type="text" id="2">
+        <field name="TEXT">BEST_SCORE</field>
+      </block>
+    </value>
+  </block>
+  <block type="global_declaration" id="3" inline="false" x="-252" y="-61">
+    <field name="NAME">canvastouch</field>
+    <value name="VALUE">
+      <block type="math_number" id="4">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+  </block>
+  <block type="global_declaration" id="5" inline="false" x="-505" y="9">
+    <field name="NAME">score</field>
+    <value name="VALUE">
+      <block type="math_number" id="6">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+  </block>
+  <block type="global_declaration" id="7" inline="false" x="-693" y="46">
+    <field name="NAME">BestScore</field>
+    <value name="VALUE">
+      <block type="math_number" id="8">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+  </block>
+  <block type="component_event" id="9" x="-374" y="63">
+    <mutation component_type="Form" instance_name="Screen1" event_name="Initialize"></mutation>
+    <field name="COMPONENT_SELECTOR">Screen1</field>
+    <statement name="DO">
+      <block type="component_set_get" id="10" inline="false">
+        <mutation component_type="Label" set_or_get="set" property_name="Text" is_generic="false" instance_name="ScoreLabel"></mutation>
+        <field name="COMPONENT_SELECTOR">ScoreLabel</field>
+        <field name="PROP">Text</field>
+        <value name="VALUE">
+          <block type="text" id="11">
+            <field name="TEXT">SCORE: 0</field>
+          </block>
+        </value>
+        <next>
+          <block type="component_set_get" id="12" inline="false">
+            <mutation component_type="Label" set_or_get="set" property_name="Text" is_generic="false" instance_name="HighScore"></mutation>
+            <field name="COMPONENT_SELECTOR">HighScore</field>
+            <field name="PROP">Text</field>
+            <value name="VALUE">
+              <block type="text_join" id="13" inline="false">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                  <block type="text" id="14">
+                    <field name="TEXT">BEST: </field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="lexical_variable_get" id="15">
+                    <field name="VAR">global BestScore</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="component_set_get" id="16" inline="false">
+                <mutation component_type="Label" set_or_get="set" property_name="Text" is_generic="false" instance_name="Label1"></mutation>
+                <field name="COMPONENT_SELECTOR">Label1</field>
+                <field name="PROP">Text</field>
+                <value name="VALUE">
+                  <block type="text" id="17">
+                    <field name="TEXT">LIVES: 3</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="component_set_get" id="18" inline="false">
+                    <mutation component_type="Label" set_or_get="set" property_name="Text" is_generic="false" instance_name="HighScore"></mutation>
+                    <field name="COMPONENT_SELECTOR">HighScore</field>
+                    <field name="PROP">Text</field>
+                    <value name="VALUE">
+                      <block type="component_method" id="19" inline="false">
+                        <mutation component_type="TinyDB" method_name="GetValue" is_generic="false" instance_name="TinyDB1"></mutation>
+                        <field name="COMPONENT_SELECTOR">TinyDB1</field>
+                        <value name="ARG0">
+                          <block type="text" id="20">
+                            <field name="TEXT">HighestScore</field>
+                          </block>
+                        </value>
+                        <value name="ARG1">
+                          <block type="text" id="21">
+                            <field name="TEXT">BEST: 0</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" id="22" x="-1288" y="124">
+    <mutation></mutation>
+    <field name="NAME">HighScoreDataBase</field>
+    <statement name="STACK">
+      <block type="controls_if" id="23" inline="false">
+        <value name="IF0">
+          <block type="math_compare" id="24" inline="true">
+            <field name="OP">GT</field>
+            <value name="A">
+              <block type="lexical_variable_get" id="25">
+                <field name="VAR">global score</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="lexical_variable_get" id="26">
+                <field name="VAR">global BestScore</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="component_set_get" id="27" inline="false">
+            <mutation component_type="Label" set_or_get="set" property_name="Text" is_generic="false" instance_name="HighScore"></mutation>
+            <field name="COMPONENT_SELECTOR">HighScore</field>
+            <field name="PROP">Text</field>
+            <value name="VALUE">
+              <block type="text_join" id="28" inline="false">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                  <block type="text" id="29">
+                    <field name="TEXT">BEST: </field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="lexical_variable_get" id="30">
+                    <field name="VAR">global score</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="component_method" id="31" inline="false">
+                <mutation component_type="TinyDB" method_name="StoreValue" is_generic="false" instance_name="TinyDB1"></mutation>
+                <field name="COMPONENT_SELECTOR">TinyDB1</field>
+                <value name="ARG0">
+                  <block type="text" id="32">
+                    <field name="TEXT">HighestScore</field>
+                  </block>
+                </value>
+                <value name="ARG1">
+                  <block type="text_join" id="33" inline="false">
+                    <mutation items="2"></mutation>
+                    <value name="ADD0">
+                      <block type="text" id="34">
+                        <field name="TEXT">BEST: </field>
+                      </block>
+                    </value>
+                    <value name="ADD1">
+                      <block type="lexical_variable_get" id="35">
+                        <field name="VAR">global score</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" id="36" x="64" y="58">
+    <mutation></mutation>
+    <field name="NAME">MoveMole</field>
+    <statement name="STACK">
+      <block type="component_set_get" id="37" inline="false">
+        <mutation component_type="ImageSprite" set_or_get="set" property_name="X" is_generic="false" instance_name="Avocado"></mutation>
+        <field name="COMPONENT_SELECTOR">Avocado</field>
+        <field name="PROP">X</field>
+        <value name="VALUE">
+          <block type="math_multiply" id="38" inline="true">
+            <mutation items="2"></mutation>
+            <value name="NUM0">
+              <block type="math_random_float" id="39"></block>
+            </value>
+            <value name="NUM1">
+              <block type="math_subtract" id="40" inline="true">
+                <value name="A">
+                  <block type="component_set_get" id="41">
+                    <mutation component_type="Canvas" set_or_get="get" property_name="Width" is_generic="false" instance_name="MyCanvas"></mutation>
+                    <field name="COMPONENT_SELECTOR">MyCanvas</field>
+                    <field name="PROP">Width</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="component_set_get" id="42">
+                    <mutation component_type="ImageSprite" set_or_get="get" property_name="Width" is_generic="false" instance_name="Avocado"></mutation>
+                    <field name="COMPONENT_SELECTOR">Avocado</field>
+                    <field name="PROP">Width</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="component_set_get" id="43" inline="false">
+            <mutation component_type="ImageSprite" set_or_get="set" property_name="Y" is_generic="false" instance_name="Avocado"></mutation>
+            <field name="COMPONENT_SELECTOR">Avocado</field>
+            <field name="PROP">Y</field>
+            <value name="VALUE">
+              <block type="math_multiply" id="44" inline="true">
+                <mutation items="2"></mutation>
+                <value name="NUM0">
+                  <block type="math_random_float" id="45"></block>
+                </value>
+                <value name="NUM1">
+                  <block type="math_subtract" id="46" inline="true">
+                    <value name="A">
+                      <block type="component_set_get" id="47">
+                        <mutation component_type="Canvas" set_or_get="get" property_name="Width" is_generic="false" instance_name="MyCanvas"></mutation>
+                        <field name="COMPONENT_SELECTOR">MyCanvas</field>
+                        <field name="PROP">Width</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="component_set_get" id="48">
+                        <mutation component_type="ImageSprite" set_or_get="get" property_name="Width" is_generic="false" instance_name="Avocado"></mutation>
+                        <field name="COMPONENT_SELECTOR">Avocado</field>
+                        <field name="PROP">Width</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="49" x="-631" y="120">
+    <mutation component_type="Clock" instance_name="MoleTimer" event_name="Timer"></mutation>
+    <field name="COMPONENT_SELECTOR">MoleTimer</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="50">
+        <mutation name="MoveMole"></mutation>
+        <field name="PROCNAME">MoveMole</field>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="51" x="346" y="299">
+    <mutation component_type="ImageSprite" instance_name="Avocado" event_name="Touched"></mutation>
+    <field name="COMPONENT_SELECTOR">Avocado</field>
+    <statement name="DO">
+      <block type="lexical_variable_set" id="52" inline="false">
+        <field name="VAR">global score</field>
+        <value name="VALUE">
+          <block type="math_add" id="53" inline="true">
+            <mutation items="2"></mutation>
+            <value name="NUM0">
+              <block type="lexical_variable_get" id="54">
+                <field name="VAR">global score</field>
+              </block>
+            </value>
+            <value name="NUM1">
+              <block type="math_number" id="55">
+                <field name="NUM">1</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="lexical_variable_set" id="56" inline="false">
+            <field name="VAR">global Misses</field>
+            <value name="VALUE">
+              <block type="math_subtract" id="57" inline="true">
+                <value name="A">
+                  <block type="lexical_variable_get" id="58">
+                    <field name="VAR">global canvastouch</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="lexical_variable_get" id="59">
+                    <field name="VAR">global score</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="component_method" id="60" inline="false">
+                <mutation component_type="Sound" method_name="Vibrate" is_generic="false" instance_name="Noise"></mutation>
+                <field name="COMPONENT_SELECTOR">Noise</field>
+                <value name="ARG0">
+                  <block type="math_number" id="61">
+                    <field name="NUM">200</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="procedures_callnoreturn" id="62">
+                    <mutation name="UpdateScore"></mutation>
+                    <field name="PROCNAME">UpdateScore</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="63" x="-543" y="375">
+    <mutation component_type="Button" instance_name="Help1" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">Help1</field>
+    <statement name="DO">
+      <block type="component_method" id="64" inline="false">
+        <mutation component_type="Notifier" method_name="ShowMessageDialog" is_generic="false" instance_name="Help"></mutation>
+        <field name="COMPONENT_SELECTOR">Help</field>
+        <value name="ARG0">
+          <block type="text" id="65">
+            <field name="TEXT">You need guac but your avocadoes are on the loose! Your mission is to whack as many avocadoes as you can without missing more than 3 times! Good luck :)</field>
+          </block>
+        </value>
+        <value name="ARG1">
+          <block type="text" id="66">
+            <field name="TEXT">I need help!</field>
+          </block>
+        </value>
+        <value name="ARG2">
+          <block type="text" id="67">
+            <field name="TEXT">I'm ready.</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="global_declaration" id="68" inline="false" x="-972" y="453">
+    <field name="NAME">Lives</field>
+    <value name="VALUE">
+      <block type="math_number" id="69">
+        <field name="NUM">3</field>
+      </block>
+    </value>
+  </block>
+  <block type="global_declaration" id="70" inline="false" x="-1351" y="494">
+    <field name="NAME">Misses</field>
+    <value name="VALUE">
+      <block type="math_number" id="71">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+  </block>
+  <block type="procedures_defnoreturn" id="72" x="-1173" y="549">
+    <mutation></mutation>
+    <field name="NAME">Reset</field>
+    <statement name="STACK">
+      <block type="lexical_variable_set" id="73" inline="false">
+        <field name="VAR">global score</field>
+        <value name="VALUE">
+          <block type="math_number" id="74">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+        <next>
+          <block type="lexical_variable_set" id="75" inline="false">
+            <field name="VAR">global canvastouch</field>
+            <value name="VALUE">
+              <block type="math_number" id="76">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+            <next>
+              <block type="lexical_variable_set" id="77" inline="false">
+                <field name="VAR">global Lives</field>
+                <value name="VALUE">
+                  <block type="math_number" id="78">
+                    <field name="NUM">3</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="lexical_variable_set" id="79" inline="false">
+                    <field name="VAR">global Misses</field>
+                    <value name="VALUE">
+                      <block type="math_number" id="80">
+                        <field name="NUM">0</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="procedures_callnoreturn" id="81">
+                        <mutation name="UpdateScore"></mutation>
+                        <field name="PROCNAME">UpdateScore</field>
+                        <next>
+                          <block type="component_set_get" id="82" inline="false">
+                            <mutation component_type="ImageSprite" set_or_get="set" property_name="Visible" is_generic="false" instance_name="ImageSprite1"></mutation>
+                            <field name="COMPONENT_SELECTOR">ImageSprite1</field>
+                            <field name="PROP">Visible</field>
+                            <value name="VALUE">
+                              <block type="logic_false" id="83">
+                                <field name="BOOL">FALSE</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="component_set_get" id="84" inline="false">
+                                <mutation component_type="ImageSprite" set_or_get="set" property_name="Visible" is_generic="false" instance_name="left"></mutation>
+                                <field name="COMPONENT_SELECTOR">left</field>
+                                <field name="PROP">Visible</field>
+                                <value name="VALUE">
+                                  <block type="logic_boolean" id="85">
+                                    <field name="BOOL">TRUE</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="component_set_get" id="86" inline="false">
+                                    <mutation component_type="ImageSprite" set_or_get="set" property_name="Visible" is_generic="false" instance_name="middle"></mutation>
+                                    <field name="COMPONENT_SELECTOR">middle</field>
+                                    <field name="PROP">Visible</field>
+                                    <value name="VALUE">
+                                      <block type="logic_boolean" id="87">
+                                        <field name="BOOL">TRUE</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="component_set_get" id="88" inline="false">
+                                        <mutation component_type="ImageSprite" set_or_get="set" property_name="Visible" is_generic="false" instance_name="right"></mutation>
+                                        <field name="COMPONENT_SELECTOR">right</field>
+                                        <field name="PROP">Visible</field>
+                                        <value name="VALUE">
+                                          <block type="logic_boolean" id="89">
+                                            <field name="BOOL">TRUE</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="90" x="545" y="526">
+    <mutation component_type="Canvas" instance_name="MyCanvas" event_name="Touched"></mutation>
+    <field name="COMPONENT_SELECTOR">MyCanvas</field>
+    <statement name="DO">
+      <block type="lexical_variable_set" id="91" inline="false">
+        <field name="VAR">global score</field>
+        <value name="VALUE">
+          <block type="lexical_variable_get" id="92">
+            <field name="VAR">global score</field>
+          </block>
+        </value>
+        <next>
+          <block type="lexical_variable_set" id="93" inline="false">
+            <field name="VAR">global canvastouch</field>
+            <value name="VALUE">
+              <block type="math_add" id="94" inline="true">
+                <mutation items="2"></mutation>
+                <value name="NUM0">
+                  <block type="lexical_variable_get" id="95">
+                    <field name="VAR">global canvastouch</field>
+                  </block>
+                </value>
+                <value name="NUM1">
+                  <block type="math_number" id="96">
+                    <field name="NUM">1</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="lexical_variable_set" id="97" inline="false">
+                <field name="VAR">global Misses</field>
+                <value name="VALUE">
+                  <block type="math_subtract" id="98" inline="true">
+                    <value name="A">
+                      <block type="lexical_variable_get" id="99">
+                        <field name="VAR">global canvastouch</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="lexical_variable_get" id="100">
+                        <field name="VAR">global score</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="procedures_callnoreturn" id="101">
+                    <mutation name="MoveMole"></mutation>
+                    <field name="PROCNAME">MoveMole</field>
+                    <next>
+                      <block type="component_method" id="102">
+                        <mutation component_type="Sound" method_name="Play" is_generic="false" instance_name="Whack"></mutation>
+                        <field name="COMPONENT_SELECTOR">Whack</field>
+                        <next>
+                          <block type="procedures_callnoreturn" id="103">
+                            <mutation name="UpdateLives"></mutation>
+                            <field name="PROCNAME">UpdateLives</field>
+                            <next>
+                              <block type="procedures_callnoreturn" id="104">
+                                <mutation name="Event"></mutation>
+                                <field name="PROCNAME">Event</field>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" id="105" x="141" y="558">
+    <mutation></mutation>
+    <field name="NAME">UpdateLives</field>
+    <statement name="STACK">
+      <block type="lexical_variable_set" id="106" inline="false">
+        <field name="VAR">global Misses</field>
+        <value name="VALUE">
+          <block type="math_subtract" id="107" inline="true">
+            <value name="A">
+              <block type="lexical_variable_get" id="108">
+                <field name="VAR">global canvastouch</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="lexical_variable_get" id="109">
+                <field name="VAR">global score</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="controls_if" id="110" inline="false">
+            <value name="IF0">
+              <block type="math_compare" id="111" inline="true">
+                <field name="OP">LTE</field>
+                <value name="A">
+                  <block type="lexical_variable_get" id="112">
+                    <field name="VAR">global Misses</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="math_number" id="113">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="component_set_get" id="114" inline="false">
+                <mutation component_type="Clock" set_or_get="set" property_name="TimerInterval" is_generic="false" instance_name="MoleTimer"></mutation>
+                <field name="COMPONENT_SELECTOR">MoleTimer</field>
+                <field name="PROP">TimerInterval</field>
+                <value name="VALUE">
+                  <block type="math_number" id="115">
+                    <field name="NUM">1000</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="component_set_get" id="116" inline="false">
+                    <mutation component_type="ImageSprite" set_or_get="set" property_name="Visible" is_generic="false" instance_name="ImageSprite1"></mutation>
+                    <field name="COMPONENT_SELECTOR">ImageSprite1</field>
+                    <field name="PROP">Visible</field>
+                    <value name="VALUE">
+                      <block type="logic_boolean" id="117">
+                        <field name="BOOL">FALSE</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="component_set_get" id="118" inline="false">
+                        <mutation component_type="ImageSprite" set_or_get="set" property_name="Visible" is_generic="false" instance_name="left"></mutation>
+                        <field name="COMPONENT_SELECTOR">left</field>
+                        <field name="PROP">Visible</field>
+                        <value name="VALUE">
+                          <block type="logic_boolean" id="119">
+                            <field name="BOOL">TRUE</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="component_set_get" id="120" inline="false">
+                            <mutation component_type="ImageSprite" set_or_get="set" property_name="Visible" is_generic="false" instance_name="middle"></mutation>
+                            <field name="COMPONENT_SELECTOR">middle</field>
+                            <field name="PROP">Visible</field>
+                            <value name="VALUE">
+                              <block type="logic_boolean" id="121">
+                                <field name="BOOL">TRUE</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="component_set_get" id="122" inline="false">
+                                <mutation component_type="ImageSprite" set_or_get="set" property_name="Visible" is_generic="false" instance_name="right"></mutation>
+                                <field name="COMPONENT_SELECTOR">right</field>
+                                <field name="PROP">Visible</field>
+                                <value name="VALUE">
+                                  <block type="logic_boolean" id="123">
+                                    <field name="BOOL">TRUE</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="controls_if" id="124" inline="false">
+                <value name="IF0">
+                  <block type="math_compare" id="125" inline="true">
+                    <field name="OP">EQ</field>
+                    <value name="A">
+                      <block type="lexical_variable_get" id="126">
+                        <field name="VAR">global Misses</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="math_number" id="127">
+                        <field name="NUM">1</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="component_set_get" id="128" inline="false">
+                    <mutation component_type="ImageSprite" set_or_get="set" property_name="Visible" is_generic="false" instance_name="left"></mutation>
+                    <field name="COMPONENT_SELECTOR">left</field>
+                    <field name="PROP">Visible</field>
+                    <value name="VALUE">
+                      <block type="logic_boolean" id="129">
+                        <field name="BOOL">FALSE</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="component_set_get" id="130" inline="false">
+                        <mutation component_type="ImageSprite" set_or_get="set" property_name="Visible" is_generic="false" instance_name="middle"></mutation>
+                        <field name="COMPONENT_SELECTOR">middle</field>
+                        <field name="PROP">Visible</field>
+                        <value name="VALUE">
+                          <block type="logic_boolean" id="131">
+                            <field name="BOOL">TRUE</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="component_set_get" id="132" inline="false">
+                            <mutation component_type="ImageSprite" set_or_get="set" property_name="Visible" is_generic="false" instance_name="right"></mutation>
+                            <field name="COMPONENT_SELECTOR">right</field>
+                            <field name="PROP">Visible</field>
+                            <value name="VALUE">
+                              <block type="logic_boolean" id="133">
+                                <field name="BOOL">TRUE</field>
+                              </block>
+                            </value>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <next>
+                  <block type="controls_if" id="134" inline="false">
+                    <value name="IF0">
+                      <block type="math_compare" id="135" inline="true">
+                        <field name="OP">EQ</field>
+                        <value name="A">
+                          <block type="lexical_variable_get" id="136">
+                            <field name="VAR">global Misses</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="137">
+                            <field name="NUM">2</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="component_set_get" id="138" inline="false">
+                        <mutation component_type="ImageSprite" set_or_get="set" property_name="Visible" is_generic="false" instance_name="left"></mutation>
+                        <field name="COMPONENT_SELECTOR">left</field>
+                        <field name="PROP">Visible</field>
+                        <value name="VALUE">
+                          <block type="logic_boolean" id="139">
+                            <field name="BOOL">FALSE</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="component_set_get" id="140" inline="false">
+                            <mutation component_type="ImageSprite" set_or_get="set" property_name="Visible" is_generic="false" instance_name="middle"></mutation>
+                            <field name="COMPONENT_SELECTOR">middle</field>
+                            <field name="PROP">Visible</field>
+                            <value name="VALUE">
+                              <block type="logic_boolean" id="141">
+                                <field name="BOOL">FALSE</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="component_set_get" id="142" inline="false">
+                                <mutation component_type="ImageSprite" set_or_get="set" property_name="Visible" is_generic="false" instance_name="right"></mutation>
+                                <field name="COMPONENT_SELECTOR">right</field>
+                                <field name="PROP">Visible</field>
+                                <value name="VALUE">
+                                  <block type="logic_boolean" id="143">
+                                    <field name="BOOL">TRUE</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="controls_if" id="144" inline="false">
+                        <value name="IF0">
+                          <block type="math_compare" id="145" inline="true">
+                            <field name="OP">GTE</field>
+                            <value name="A">
+                              <block type="lexical_variable_get" id="146">
+                                <field name="VAR">global Misses</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="math_number" id="147">
+                                <field name="NUM">3</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <statement name="DO0">
+                          <block type="component_set_get" id="148" inline="false">
+                            <mutation component_type="ImageSprite" set_or_get="set" property_name="Visible" is_generic="false" instance_name="left"></mutation>
+                            <field name="COMPONENT_SELECTOR">left</field>
+                            <field name="PROP">Visible</field>
+                            <value name="VALUE">
+                              <block type="logic_boolean" id="149">
+                                <field name="BOOL">FALSE</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="component_set_get" id="150" inline="false">
+                                <mutation component_type="ImageSprite" set_or_get="set" property_name="Visible" is_generic="false" instance_name="middle"></mutation>
+                                <field name="COMPONENT_SELECTOR">middle</field>
+                                <field name="PROP">Visible</field>
+                                <value name="VALUE">
+                                  <block type="logic_boolean" id="151">
+                                    <field name="BOOL">FALSE</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="component_set_get" id="152" inline="false">
+                                    <mutation component_type="ImageSprite" set_or_get="set" property_name="Visible" is_generic="false" instance_name="right"></mutation>
+                                    <field name="COMPONENT_SELECTOR">right</field>
+                                    <field name="PROP">Visible</field>
+                                    <value name="VALUE">
+                                      <block type="logic_boolean" id="153">
+                                        <field name="BOOL">FALSE</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="154" x="-829" y="707">
+    <mutation component_type="Notifier" instance_name="GameOver" event_name="AfterChoosing"></mutation>
+    <field name="COMPONENT_SELECTOR">GameOver</field>
+    <statement name="DO">
+      <block type="component_set_get" id="155" inline="false">
+        <mutation component_type="Label" set_or_get="set" property_name="Text" is_generic="false" instance_name="ScoreLabel"></mutation>
+        <field name="COMPONENT_SELECTOR">ScoreLabel</field>
+        <field name="PROP">Text</field>
+        <value name="VALUE">
+          <block type="text_join" id="156" inline="false">
+            <mutation items="2"></mutation>
+            <value name="ADD0">
+              <block type="text" id="157">
+                <field name="TEXT">SCORE:</field>
+              </block>
+            </value>
+            <value name="ADD1">
+              <block type="lexical_variable_get" id="158">
+                <field name="VAR">global score</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="controls_if" id="159" inline="false">
+            <value name="IF0">
+              <block type="text_compare" id="160" inline="true">
+                <field name="OP">EQUAL</field>
+                <value name="TEXT1">
+                  <block type="lexical_variable_get" id="161">
+                    <mutation>
+                      <eventparam name="choice"></eventparam>
+                    </mutation>
+                    <field name="VAR">choice</field>
+                  </block>
+                </value>
+                <value name="TEXT2">
+                  <block type="text" id="162">
+                    <field name="TEXT">Play again</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="procedures_callnoreturn" id="163">
+                <mutation name="Reset"></mutation>
+                <field name="PROCNAME">Reset</field>
+              </block>
+            </statement>
+            <next>
+              <block type="controls_if" id="164" inline="false">
+                <value name="IF0">
+                  <block type="text_compare" id="165" inline="true">
+                    <field name="OP">EQUAL</field>
+                    <value name="TEXT1">
+                      <block type="lexical_variable_get" id="166">
+                        <mutation>
+                          <eventparam name="choice"></eventparam>
+                        </mutation>
+                        <field name="VAR">choice</field>
+                      </block>
+                    </value>
+                    <value name="TEXT2">
+                      <block type="text" id="167">
+                        <field name="TEXT">Bye.</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="controls_openAnotherScreen" id="168" inline="false">
+                    <value name="SCREEN">
+                      <block type="text" id="169">
+                        <field name="TEXT">Screen1</field>
+                      </block>
+                    </value>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" id="170" x="-317" y="797">
+    <mutation></mutation>
+    <field name="NAME">UpdateScore</field>
+    <statement name="STACK">
+      <block type="component_set_get" id="171" inline="false">
+        <mutation component_type="Label" set_or_get="set" property_name="Text" is_generic="false" instance_name="ScoreLabel"></mutation>
+        <field name="COMPONENT_SELECTOR">ScoreLabel</field>
+        <field name="PROP">Text</field>
+        <value name="VALUE">
+          <block type="text_join" id="172" inline="false">
+            <mutation items="2"></mutation>
+            <value name="ADD0">
+              <block type="text" id="173">
+                <field name="TEXT">SCORE: </field>
+              </block>
+            </value>
+            <value name="ADD1">
+              <block type="lexical_variable_get" id="174">
+                <field name="VAR">global score</field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" id="175" x="-330" y="937">
+    <mutation></mutation>
+    <field name="NAME">Event</field>
+    <statement name="STACK">
+      <block type="lexical_variable_set" id="176" inline="false">
+        <field name="VAR">global Misses</field>
+        <value name="VALUE">
+          <block type="math_subtract" id="177" inline="true">
+            <value name="A">
+              <block type="lexical_variable_get" id="178">
+                <field name="VAR">global canvastouch</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="lexical_variable_get" id="179">
+                <field name="VAR">global score</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="controls_if" id="180" inline="false">
+            <value name="IF0">
+              <block type="math_compare" id="181" inline="true">
+                <field name="OP">EQ</field>
+                <value name="A">
+                  <block type="lexical_variable_get" id="182">
+                    <field name="VAR">global Misses</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="math_number" id="183">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="component_set_get" id="184" inline="false">
+                <mutation component_type="Clock" set_or_get="set" property_name="TimerInterval" is_generic="false" instance_name="MoleTimer"></mutation>
+                <field name="COMPONENT_SELECTOR">MoleTimer</field>
+                <field name="PROP">TimerInterval</field>
+                <value name="VALUE">
+                  <block type="math_number" id="185">
+                    <field name="NUM">800</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="component_set_get" id="186" inline="false">
+                    <mutation component_type="ImageSprite" set_or_get="set" property_name="Visible" is_generic="false" instance_name="ImageSprite1"></mutation>
+                    <field name="COMPONENT_SELECTOR">ImageSprite1</field>
+                    <field name="PROP">Visible</field>
+                    <value name="VALUE">
+                      <block type="logic_boolean" id="187">
+                        <field name="BOOL">FALSE</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="controls_if" id="188" inline="false">
+                <value name="IF0">
+                  <block type="text_compare" id="189" inline="true">
+                    <field name="OP">EQUAL</field>
+                    <value name="TEXT1">
+                      <block type="component_set_get" id="190">
+                        <mutation component_type="Label" set_or_get="get" property_name="Text" is_generic="false" instance_name="ScoreLabel"></mutation>
+                        <field name="COMPONENT_SELECTOR">ScoreLabel</field>
+                        <field name="PROP">Text</field>
+                      </block>
+                    </value>
+                    <value name="TEXT2">
+                      <block type="text" id="191">
+                        <field name="TEXT">SCORE: 9</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="component_set_get" id="192" inline="false">
+                    <mutation component_type="Clock" set_or_get="set" property_name="TimerInterval" is_generic="false" instance_name="MoleTimer"></mutation>
+                    <field name="COMPONENT_SELECTOR">MoleTimer</field>
+                    <field name="PROP">TimerInterval</field>
+                    <value name="VALUE">
+                      <block type="math_number" id="193">
+                        <field name="NUM">700</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="component_set_get" id="194" inline="false">
+                        <mutation component_type="ImageSprite" set_or_get="set" property_name="Visible" is_generic="false" instance_name="ImageSprite1"></mutation>
+                        <field name="COMPONENT_SELECTOR">ImageSprite1</field>
+                        <field name="PROP">Visible</field>
+                        <value name="VALUE">
+                          <block type="logic_boolean" id="195">
+                            <field name="BOOL">TRUE</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="component_set_get" id="196" inline="false">
+                            <mutation component_type="ImageSprite" set_or_get="set" property_name="Width" is_generic="false" instance_name="ImageSprite1"></mutation>
+                            <field name="COMPONENT_SELECTOR">ImageSprite1</field>
+                            <field name="PROP">Width</field>
+                            <value name="VALUE">
+                              <block type="math_number" id="197">
+                                <field name="NUM">25</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="component_set_get" id="198" inline="false">
+                                <mutation component_type="ImageSprite" set_or_get="set" property_name="Height" is_generic="false" instance_name="ImageSprite1"></mutation>
+                                <field name="COMPONENT_SELECTOR">ImageSprite1</field>
+                                <field name="PROP">Height</field>
+                                <value name="VALUE">
+                                  <block type="math_number" id="199">
+                                    <field name="NUM">25</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="component_method" id="200">
+                                    <mutation component_type="Sound" method_name="Play" is_generic="false" instance_name="Level_up"></mutation>
+                                    <field name="COMPONENT_SELECTOR">Level_up</field>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <next>
+                  <block type="controls_if" id="201" inline="false">
+                    <value name="IF0">
+                      <block type="text_compare" id="202" inline="true">
+                        <field name="OP">EQUAL</field>
+                        <value name="TEXT1">
+                          <block type="component_set_get" id="203">
+                            <mutation component_type="Label" set_or_get="get" property_name="Text" is_generic="false" instance_name="ScoreLabel"></mutation>
+                            <field name="COMPONENT_SELECTOR">ScoreLabel</field>
+                            <field name="PROP">Text</field>
+                          </block>
+                        </value>
+                        <value name="TEXT2">
+                          <block type="text" id="204">
+                            <field name="TEXT">SCORE: 19</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="component_set_get" id="205" inline="false">
+                        <mutation component_type="Clock" set_or_get="set" property_name="TimerInterval" is_generic="false" instance_name="MoleTimer"></mutation>
+                        <field name="COMPONENT_SELECTOR">MoleTimer</field>
+                        <field name="PROP">TimerInterval</field>
+                        <value name="VALUE">
+                          <block type="math_number" id="206">
+                            <field name="NUM">620</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="component_set_get" id="207" inline="false">
+                            <mutation component_type="ImageSprite" set_or_get="set" property_name="Height" is_generic="false" instance_name="ImageSprite1"></mutation>
+                            <field name="COMPONENT_SELECTOR">ImageSprite1</field>
+                            <field name="PROP">Height</field>
+                            <value name="VALUE">
+                              <block type="math_number" id="208">
+                                <field name="NUM">35</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="component_set_get" id="209" inline="false">
+                                <mutation component_type="ImageSprite" set_or_get="set" property_name="Width" is_generic="false" instance_name="ImageSprite1"></mutation>
+                                <field name="COMPONENT_SELECTOR">ImageSprite1</field>
+                                <field name="PROP">Width</field>
+                                <value name="VALUE">
+                                  <block type="math_number" id="210">
+                                    <field name="NUM">35</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="component_method" id="211">
+                                    <mutation component_type="Sound" method_name="Play" is_generic="false" instance_name="Level_up"></mutation>
+                                    <field name="COMPONENT_SELECTOR">Level_up</field>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="controls_if" id="212" inline="false">
+                        <value name="IF0">
+                          <block type="math_compare" id="213" inline="true">
+                            <field name="OP">EQ</field>
+                            <value name="A">
+                              <block type="lexical_variable_get" id="214">
+                                <field name="VAR">global score</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="math_number" id="215">
+                                <field name="NUM">29</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <statement name="DO0">
+                          <block type="component_set_get" id="216" inline="false">
+                            <mutation component_type="Clock" set_or_get="set" property_name="TimerInterval" is_generic="false" instance_name="MoleTimer"></mutation>
+                            <field name="COMPONENT_SELECTOR">MoleTimer</field>
+                            <field name="PROP">TimerInterval</field>
+                            <value name="VALUE">
+                              <block type="math_number" id="217">
+                                <field name="NUM">550</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="component_set_get" id="218" inline="false">
+                                <mutation component_type="ImageSprite" set_or_get="set" property_name="Height" is_generic="false" instance_name="ImageSprite1"></mutation>
+                                <field name="COMPONENT_SELECTOR">ImageSprite1</field>
+                                <field name="PROP">Height</field>
+                                <value name="VALUE">
+                                  <block type="math_number" id="219">
+                                    <field name="NUM">45</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="component_set_get" id="220" inline="false">
+                                    <mutation component_type="ImageSprite" set_or_get="set" property_name="Width" is_generic="false" instance_name="ImageSprite1"></mutation>
+                                    <field name="COMPONENT_SELECTOR">ImageSprite1</field>
+                                    <field name="PROP">Width</field>
+                                    <value name="VALUE">
+                                      <block type="math_number" id="221">
+                                        <field name="NUM">45</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="component_method" id="222">
+                                        <mutation component_type="Sound" method_name="Play" is_generic="false" instance_name="Level_up"></mutation>
+                                        <field name="COMPONENT_SELECTOR">Level_up</field>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="controls_if" id="223" inline="false">
+                            <value name="IF0">
+                              <block type="math_compare" id="224" inline="true">
+                                <field name="OP">EQ</field>
+                                <value name="A">
+                                  <block type="lexical_variable_get" id="225">
+                                    <field name="VAR">global score</field>
+                                  </block>
+                                </value>
+                                <value name="B">
+                                  <block type="math_number" id="226">
+                                    <field name="NUM">39</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <statement name="DO0">
+                              <block type="component_set_get" id="227" inline="false">
+                                <mutation component_type="Clock" set_or_get="set" property_name="TimerInterval" is_generic="false" instance_name="MoleTimer"></mutation>
+                                <field name="COMPONENT_SELECTOR">MoleTimer</field>
+                                <field name="PROP">TimerInterval</field>
+                                <value name="VALUE">
+                                  <block type="math_number" id="228">
+                                    <field name="NUM">485</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="component_set_get" id="229" inline="false">
+                                    <mutation component_type="ImageSprite" set_or_get="set" property_name="Height" is_generic="false" instance_name="ImageSprite1"></mutation>
+                                    <field name="COMPONENT_SELECTOR">ImageSprite1</field>
+                                    <field name="PROP">Height</field>
+                                    <value name="VALUE">
+                                      <block type="math_number" id="230">
+                                        <field name="NUM">55</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="component_set_get" id="231" inline="false">
+                                        <mutation component_type="ImageSprite" set_or_get="set" property_name="Width" is_generic="false" instance_name="ImageSprite1"></mutation>
+                                        <field name="COMPONENT_SELECTOR">ImageSprite1</field>
+                                        <field name="PROP">Width</field>
+                                        <value name="VALUE">
+                                          <block type="math_number" id="232">
+                                            <field name="NUM">55</field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="component_method" id="233">
+                                            <mutation component_type="Sound" method_name="Play" is_generic="false" instance_name="Level_up"></mutation>
+                                            <field name="COMPONENT_SELECTOR">Level_up</field>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </statement>
+                            <next>
+                              <block type="controls_if" id="234" inline="false">
+                                <value name="IF0">
+                                  <block type="math_compare" id="235" inline="true">
+                                    <field name="OP">EQ</field>
+                                    <value name="A">
+                                      <block type="lexical_variable_get" id="236">
+                                        <field name="VAR">global score</field>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <block type="math_number" id="237">
+                                        <field name="NUM">44</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <statement name="DO0">
+                                  <block type="component_set_get" id="238" inline="false">
+                                    <mutation component_type="Clock" set_or_get="set" property_name="TimerInterval" is_generic="false" instance_name="MoleTimer"></mutation>
+                                    <field name="COMPONENT_SELECTOR">MoleTimer</field>
+                                    <field name="PROP">TimerInterval</field>
+                                    <value name="VALUE">
+                                      <block type="math_number" id="239">
+                                        <field name="NUM">420</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="component_set_get" id="240" inline="false">
+                                        <mutation component_type="ImageSprite" set_or_get="set" property_name="Height" is_generic="false" instance_name="ImageSprite1"></mutation>
+                                        <field name="COMPONENT_SELECTOR">ImageSprite1</field>
+                                        <field name="PROP">Height</field>
+                                        <value name="VALUE">
+                                          <block type="math_number" id="241">
+                                            <field name="NUM">65</field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="component_set_get" id="242" inline="false">
+                                            <mutation component_type="ImageSprite" set_or_get="set" property_name="Width" is_generic="false" instance_name="ImageSprite1"></mutation>
+                                            <field name="COMPONENT_SELECTOR">ImageSprite1</field>
+                                            <field name="PROP">Width</field>
+                                            <value name="VALUE">
+                                              <block type="math_number" id="243">
+                                                <field name="NUM">65</field>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="component_method" id="244">
+                                                <mutation component_type="Sound" method_name="Play" is_generic="false" instance_name="Level_up"></mutation>
+                                                <field name="COMPONENT_SELECTOR">Level_up</field>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </statement>
+                                <next>
+                                  <block type="controls_if" id="245" inline="false">
+                                    <value name="IF0">
+                                      <block type="math_compare" id="246" inline="true">
+                                        <field name="OP">EQ</field>
+                                        <value name="A">
+                                          <block type="lexical_variable_get" id="247">
+                                            <field name="VAR">global score</field>
+                                          </block>
+                                        </value>
+                                        <value name="B">
+                                          <block type="math_number" id="248">
+                                            <field name="NUM">49</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <statement name="DO0">
+                                      <block type="component_set_get" id="249" inline="false">
+                                        <mutation component_type="Clock" set_or_get="set" property_name="TimerInterval" is_generic="false" instance_name="MoleTimer"></mutation>
+                                        <field name="COMPONENT_SELECTOR">MoleTimer</field>
+                                        <field name="PROP">TimerInterval</field>
+                                        <value name="VALUE">
+                                          <block type="math_number" id="250">
+                                            <field name="NUM">390</field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="component_set_get" id="251" inline="false">
+                                            <mutation component_type="ImageSprite" set_or_get="set" property_name="Height" is_generic="false" instance_name="ImageSprite1"></mutation>
+                                            <field name="COMPONENT_SELECTOR">ImageSprite1</field>
+                                            <field name="PROP">Height</field>
+                                            <value name="VALUE">
+                                              <block type="math_number" id="252">
+                                                <field name="NUM">75</field>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="component_set_get" id="253" inline="false">
+                                                <mutation component_type="ImageSprite" set_or_get="set" property_name="Width" is_generic="false" instance_name="ImageSprite1"></mutation>
+                                                <field name="COMPONENT_SELECTOR">ImageSprite1</field>
+                                                <field name="PROP">Width</field>
+                                                <value name="VALUE">
+                                                  <block type="math_number" id="254">
+                                                    <field name="NUM">75</field>
+                                                  </block>
+                                                </value>
+                                                <next>
+                                                  <block type="component_method" id="255">
+                                                    <mutation component_type="Sound" method_name="Play" is_generic="false" instance_name="Level_up"></mutation>
+                                                    <field name="COMPONENT_SELECTOR">Level_up</field>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </statement>
+                                    <next>
+                                      <block type="controls_if" id="256" inline="false">
+                                        <value name="IF0">
+                                          <block type="math_compare" id="257" inline="true">
+                                            <field name="OP">EQ</field>
+                                            <value name="A">
+                                              <block type="lexical_variable_get" id="258">
+                                                <field name="VAR">global score</field>
+                                              </block>
+                                            </value>
+                                            <value name="B">
+                                              <block type="math_number" id="259">
+                                                <field name="NUM">54</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <statement name="DO0">
+                                          <block type="component_set_get" id="260" inline="false">
+                                            <mutation component_type="Clock" set_or_get="set" property_name="TimerInterval" is_generic="false" instance_name="MoleTimer"></mutation>
+                                            <field name="COMPONENT_SELECTOR">MoleTimer</field>
+                                            <field name="PROP">TimerInterval</field>
+                                            <value name="VALUE">
+                                              <block type="math_number" id="261">
+                                                <field name="NUM">360</field>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="component_set_get" id="262" inline="false">
+                                                <mutation component_type="ImageSprite" set_or_get="set" property_name="Height" is_generic="false" instance_name="ImageSprite1"></mutation>
+                                                <field name="COMPONENT_SELECTOR">ImageSprite1</field>
+                                                <field name="PROP">Height</field>
+                                                <value name="VALUE">
+                                                  <block type="math_number" id="263">
+                                                    <field name="NUM">85</field>
+                                                  </block>
+                                                </value>
+                                                <next>
+                                                  <block type="component_set_get" id="264" inline="false">
+                                                    <mutation component_type="ImageSprite" set_or_get="set" property_name="Width" is_generic="false" instance_name="ImageSprite1"></mutation>
+                                                    <field name="COMPONENT_SELECTOR">ImageSprite1</field>
+                                                    <field name="PROP">Width</field>
+                                                    <value name="VALUE">
+                                                      <block type="math_number" id="265">
+                                                        <field name="NUM">85</field>
+                                                      </block>
+                                                    </value>
+                                                    <next>
+                                                      <block type="component_method" id="266">
+                                                        <mutation component_type="Sound" method_name="Play" is_generic="false" instance_name="Level_up"></mutation>
+                                                        <field name="COMPONENT_SELECTOR">Level_up</field>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </statement>
+                                        <next>
+                                          <block type="controls_if" id="267" inline="false">
+                                            <value name="IF0">
+                                              <block type="logic_operation" id="268" inline="true">
+                                                <field name="OP">AND</field>
+                                                <value name="A">
+                                                  <block type="math_compare" id="269" inline="true">
+                                                    <field name="OP">EQ</field>
+                                                    <value name="A">
+                                                      <block type="component_set_get" id="270">
+                                                        <mutation component_type="ImageSprite" set_or_get="get" property_name="Visible" is_generic="false" instance_name="right"></mutation>
+                                                        <field name="COMPONENT_SELECTOR">right</field>
+                                                        <field name="PROP">Visible</field>
+                                                      </block>
+                                                    </value>
+                                                    <value name="B">
+                                                      <block type="logic_false" id="271">
+                                                        <field name="BOOL">FALSE</field>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </value>
+                                                <value name="B">
+                                                  <block type="math_compare" id="272" inline="true">
+                                                    <field name="OP">GTE</field>
+                                                    <value name="A">
+                                                      <block type="lexical_variable_get" id="273">
+                                                        <field name="VAR">global Misses</field>
+                                                      </block>
+                                                    </value>
+                                                    <value name="B">
+                                                      <block type="math_number" id="274">
+                                                        <field name="NUM">3</field>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <statement name="DO0">
+                                              <block type="component_method" id="275" inline="false">
+                                                <mutation component_type="Notifier" method_name="ShowChooseDialog" is_generic="false" instance_name="GameOver"></mutation>
+                                                <field name="COMPONENT_SELECTOR">GameOver</field>
+                                                <value name="ARG0">
+                                                  <block type="text_join" id="276" inline="false">
+                                                    <mutation items="2"></mutation>
+                                                    <value name="ADD0">
+                                                      <block type="text" id="277">
+                                                        <field name="TEXT">Your score is </field>
+                                                      </block>
+                                                    </value>
+                                                    <value name="ADD1">
+                                                      <block type="lexical_variable_get" id="278">
+                                                        <field name="VAR">global score</field>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </value>
+                                                <value name="ARG1">
+                                                  <block type="text" id="279">
+                                                    <field name="TEXT">Game Over :(</field>
+                                                  </block>
+                                                </value>
+                                                <value name="ARG2">
+                                                  <block type="text" id="280">
+                                                    <field name="TEXT">Play again</field>
+                                                  </block>
+                                                </value>
+                                                <value name="ARG3">
+                                                  <block type="text" id="281">
+                                                    <field name="TEXT">Bye.</field>
+                                                  </block>
+                                                </value>
+                                                <value name="ARG4">
+                                                  <block type="logic_boolean" id="282">
+                                                    <field name="BOOL">FALSE</field>
+                                                  </block>
+                                                </value>
+                                                <next>
+                                                  <block type="procedures_callnoreturn" id="283">
+                                                    <mutation name="HighScoreDataBase"></mutation>
+                                                    <field name="PROCNAME">HighScoreDataBase</field>
+                                                    <next>
+                                                      <block type="component_method" id="284">
+                                                        <mutation component_type="Sound" method_name="Play" is_generic="false" instance_name="gameover"></mutation>
+                                                        <field name="COMPONENT_SELECTOR">gameover</field>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </statement>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <yacodeblocks ya-version="158" language-version="20"></yacodeblocks>
+</xml>
